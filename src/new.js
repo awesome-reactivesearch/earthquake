@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import {
   ReactiveBase,
+  SingleList,
   SelectedFilters,
-  MultiList,
-  RangeSlider
+  MultiDataList,
+  RangeSlider,
+  MultiList
 } from "@appbaseio/reactivesearch";
 import {ReactiveMap} from "@appbaseio/reactivemaps";
 
@@ -18,43 +20,30 @@ class App extends Component {
         type="places"
         mapKey="AIzaSyBQdVcKCe0q_vOBDUvJYpzwGpt_d_uTj4Q"
       >
-        <div className="main-container">
-          <div className="mapContainer">
-            <SelectedFilters className="selected-filters" />
-            <ReactiveMap
-              componentId="map"
-              dataField="location"
-              defaultZoom={6}
-              size={100}
-              react={{
-                and: ["PlaceSensor", "RangeSensor", "YearSensor"]
-              }}
-              onData={result => ({
-                label: result.mag
-              })}
+        <div className="row">
+          <div className="col">
+            <SingleList
+              title="Places"
+              componentId="places"
+              dataField="place.raw"
+              size={50}
+              showSearch
             />
-          </div>
-          <div className="filterContainer">
             <MultiList
               componentId="PlaceSensor"
               dataField="place.raw"
               defaultSelected={["Japan"]}
               showCount={true}
               size={1000}
-              react={{
-                and: ["map", "RangeSensor", "YearSensor"]
-              }}
               showSearch={true}
               title="Places"
-              filterLabel="Places"
               searchPlaceholder="Search Place"
             />
-            <hr />
             <RangeSlider
               componentId="RangeSensor"
               dataField="mag"
               react={{
-                and: ["PlaceSensor", "map", "YearSensor"]
+                and: "PlaceSensor"
               }}
               defaultSelected={{
                 start: 1,
@@ -64,19 +53,14 @@ class App extends Component {
                 start: 1,
                 end: 10
               }}
-              rangeLabels={{
-                start: "1",
-                end: "10"
-              }}
               title="Magnitude"
               stepValue={1}
             />
-            <hr />
             <RangeSlider
               componentId="YearSensor"
               dataField="time"
               react={{
-                and: ["PlaceSensor", "RangeSensor", "YearSensor"]
+                and: "PlaceSensor"
               }}
               defaultSelected={{
                 start: 1901,
@@ -86,12 +70,21 @@ class App extends Component {
                 start: 1900,
                 end: 2016
               }}
-              rangeLabels={{
-                start: "1900",
-                end: "2016"
-              }}
               title="Year"
               stepValue={1}
+            />
+          </div>
+          <div className="col">
+            <SelectedFilters />
+            <ReactiveMap
+              componentId="map"
+              dataField="location"
+              react={{
+                and: "places"
+              }}
+              onData={result => ({
+                label: result.mag
+              })}
             />
           </div>
         </div>

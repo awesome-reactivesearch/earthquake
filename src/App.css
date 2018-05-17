@@ -1,7 +1,7 @@
 /* layout */
 .main-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
 .mapContainer {
   width: 75%;
@@ -9,16 +9,17 @@
 }
 .selected-filters {
   position: absolute;
-  left: 375px;
+  right: 30%;
   top: 7px;
   z-index: 1;
 }
 .filterContainer {
   width: 25%;
   padding: 15px;
+  padding-right: 0px;
 }
 .main-container {
-  margin: 0 10px;
+  margin: 0px 10px;
 }
 
 @media all and (max-width: 767px) {

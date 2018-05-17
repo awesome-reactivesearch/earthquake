@@ -1,11 +1,11 @@
 import React, {Component} from "react";
+import {ReactiveMap} from "@appbaseio/reactivemaps";
 import {
   ReactiveBase,
   SelectedFilters,
-  MultiList,
+  SingleList,
   RangeSlider
 } from "@appbaseio/reactivesearch";
-import {ReactiveMap} from "@appbaseio/reactivemaps";
 
 import "./App.css";
 
@@ -19,26 +19,11 @@ class App extends Component {
         mapKey="AIzaSyBQdVcKCe0q_vOBDUvJYpzwGpt_d_uTj4Q"
       >
         <div className="main-container">
-          <div className="mapContainer">
-            <SelectedFilters className="selected-filters" />
-            <ReactiveMap
-              componentId="map"
-              dataField="location"
-              defaultZoom={6}
-              size={100}
-              react={{
-                and: ["PlaceSensor", "RangeSensor", "YearSensor"]
-              }}
-              onData={result => ({
-                label: result.mag
-              })}
-            />
-          </div>
           <div className="filterContainer">
-            <MultiList
+            <SingleList
               componentId="PlaceSensor"
               dataField="place.raw"
-              defaultSelected={["Japan"]}
+              defaultSelected="Japan"
               showCount={true}
               size={1000}
               react={{
@@ -92,6 +77,24 @@ class App extends Component {
               }}
               title="Year"
               stepValue={1}
+            />
+          </div>
+          <div className="mapContainer">
+            <SelectedFilters
+              className="selected-filters"
+              clearAllLabel="Clear filter"
+            />
+            <ReactiveMap
+              componentId="map"
+              dataField="location"
+              defaultZoom={6}
+              size={100}
+              react={{
+                and: ["PlaceSensor", "RangeSensor", "YearSensor"]
+              }}
+              onData={result => ({
+                label: result.mag
+              })}
             />
           </div>
         </div>

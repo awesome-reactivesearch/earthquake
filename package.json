@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@appbaseio/reactivemaps": "^2.0.0-alpha-05",
-    "@appbaseio/reactivesearch": "^2.5.1",
+    "@appbaseio/reactivemaps": "^2.0.0-alpha-07",
+    "@appbaseio/reactivesearch": "^2.6.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^1.1.4",
     "serve": "^6.5.5"
   },
   "scripts": {

@@ -23,7 +23,12 @@ The ReactiveMaps and ReactiveSearch components code resides in `src/App.js` file
 3.  The following components:
 
 * **ReactiveBase** - Provider component that connects the UI with the backend app.
+
 * **SingleList** - Creates a single selection based list UI component that is connected to a database field.
+
+* **RangeSlider** - Creates a slider component that is connected to a database field.
+
 * **SelectedFilters** - Creates a selectable filter UI view displaying the current selected values from other components.
+
 * **ReactiveMap** - Creates a data-driven map UI component. It is the key component for build map based experiences.
   "# earthquake"
